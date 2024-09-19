@@ -1,0 +1,22 @@
+<div class="flex space-x-3" id="create_reply_{{ parent_page.id }}_form">
+  <div class="w-full">
+    {%# 评论框 %}
+    {% form_tag 'page' %}
+      <input value="reply_level_1" autocomplete="off" type="hidden" name="page[template_name]">
+      <input value="" autocomplete="off" type="hidden" name="page[template_style]">
+      <input value="{{ parent_page.path }}" autocomplete="off" type="hidden" name="page[parent_full_path]">
+      <input value="create_reply_success" autocomplete="off" type="hidden" name="return_template_name">
+      <textarea name="page[template_variables]content" rows="4" class="w-full form-textarea placeholder:italic"
+      placeholder="回答问题"></textarea>
+
+      <div id="reply_post_error" class="text-xs text-red-500"></div>
+      <div class="flex items-center justify-end space-x-3">
+        <input
+          type="submit"
+          value="提交"
+          @click="open = false"
+          class="inline-flex items-center justify-center px-4 py-2 mt-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out rounded-full whitespace-nowrap bg-primary"  />
+      </div>
+    {% endform_tag %}
+  </div>
+</div>

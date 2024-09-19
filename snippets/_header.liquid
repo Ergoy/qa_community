@@ -1,0 +1,94 @@
+<header class="absolute z-30 w-full bg-slate-900">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6">
+        <div class="flex items-center justify-between h-16 md:h-20">
+
+            <!-- Site branding -->
+            <div class="mr-4 shrink-0">
+                <!-- Logo -->
+                <div class="flex lg:flex-1">
+                    <a href="/" class="-m-1.5 p-1.5">
+                        <span class="sr-only">{{ site.name }}</span>
+                        {% assign logo = 'images/logo.svg' | asset_url %}
+                        <img src="{{ site.settings.logo_url | default: logo }}" class="w-auto h-8" alt="{{ site.name }}" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Desktop navigation -->
+            <nav class="flex grow">
+                <!-- Desktop sign in links -->
+                <ul class="flex flex-wrap items-center justify-end grow">
+                    <li data-controller="theme" class="flex flex-col justify-center ">
+                        <input
+                            type="checkbox"
+                            name="light-switch"
+                            id="light-switch"
+                            class="sr-only light-switch"
+                            data-theme-target="checkbox"
+                            data-action="change->theme#toggle"
+                        >
+                        <label class="relative p-2 bg-white rounded-full cursor-pointer hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" for="light-switch">
+                            <svg x-transition:enter="transition-transform duration-200 ease-out absolute origin-top" x-transition:enter-start="scale-75" x-transition:enter-end="scale-100 static" class="hidden w-5 h-5 text-primary dark:block" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.75 3.412a.818.818 0 01-.07.917 6.332 6.332 0 00-1.4 3.971c0 3.564 2.98 6.494 6.706 6.494a6.86 6.86 0 002.856-.617.818.818 0 011.1 1.047C19.593 18.614 16.218 21 12.283 21 7.18 21 3 16.973 3 11.956c0-4.563 3.46-8.31 7.925-8.948a.818.818 0 01.826.404z"></path>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" x-transition:enter="transition-transform duration-200 ease-out absolute origin-top" x-transition:enter-start="scale-75" x-transition:enter-end="scale-100 static" class="w-6 h-6 text-primary dark:hidden" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Switch to light / dark version</span>
+                        </label>
+                    </li>
+                    {% if current_user %}
+                        <li>
+                            <div data-controller="dropdown" class="relative">
+                            <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
+                                {% if current_user.image %}
+                                <img src="{{current_user.image}}" class="w-10 h-10 rounded-full">
+                                {% else %}
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 rounded-full">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+                                {% endif %}
+                            </button>
+                            <div
+                                data-dropdown-target="menu"
+                                class="hidden transition transform origin-top-right absolute right-0 rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700 px-2 min-w-[10rem] shadow-lg"
+                                data-transition-enter-from="opacity-0 scale-95"
+                                data-transition-enter-to="opacity-100 scale-100"
+                                data-transition-leave-from="opacity-100 scale-100"
+                                data-transition-leave-to="opacity-0 scale-95"
+                            >
+                                <div class="py-2 text-gray-700">{{ current_user.name }}</div>
+                                {% form_tag 'sign_out' %}
+                                <button type="submit" class="py-2 text-gray-700 hover:text-primary">退出登录</button>
+                                {% endform_tag %}
+                            </div>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li>
+                            {% form_tag 'sign_in_with_baklib' %}
+                            <input type="submit"
+                                value="{{ "buttons.login" | t: '登录' }}"
+                                class="flex items-center px-3 py-2 text-sm font-medium transition duration-150 ease-in-out text-slate-400 hover:text-slate-200 lg:px-5"
+                                data-disable-with=" ... "
+                                >
+                            {% endform_tag %}
+                        </li>
+                        <li class="ml-3">
+                            {% form_tag 'sign_in_with_baklib' %}
+                            <input type="submit"
+                                value="{{ '注册' }}"
+                                class="w-full text-white bg-indigo-500 btn-sm hover:bg-indigo-600"
+                                data-disable-with=" ... "
+                                >
+                            {% endform_tag %}
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+            </nav>
+
+        </div>
+    </div>
+</header>

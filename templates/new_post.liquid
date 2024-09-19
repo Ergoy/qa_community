@@ -1,0 +1,9 @@
+<div class="w-2/3 px-4 mx-auto my-8 sm:px-6 min-h-fit">
+  <div class="flex flex-col justify-between text-slate-900 text-content-subdued">
+    <div class="flex-1 px-4 py-5 sm:px-6 sm:py-0 max-w-7xl " x-data="{}">
+      {% form_tag 'page' %}
+        {% render 'post_form', page: page,  action: 'create' %}
+      {% endform_tag %}
+    </div>
+  </div>
+</div>
