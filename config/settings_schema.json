@@ -1,0 +1,100 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "q_and_a",
+    "theme_label": "t:theme_label",
+    "theme_description": "t:theme_description",
+    "theme_version": "1.0.0",
+    "theme_scope": "community",
+    "theme_author": "Baklib",
+    "theme_documentation_url": "https://help.baklib.cn/themes/release-guide",
+    "theme_support_url": "https://help.baklib.cn/themes/release-guide/settings",
+    "theme_thumb_url": "https://assets.tanmer.cn/baklib/apps/questions-tab.png",
+    "theme_preview_images": [
+      "https://assets.tanmer.cn/baklib/apps/questions-tab.png"
+    ],
+    "theme_languages": [
+      {
+        "name": "中文简体",
+        "value": "zh-CN"
+      },
+      {
+        "name": "English",
+        "value": "en-US"
+      }
+    ],
+    "recommendations": {
+      "color_schemas": {
+        "fashion": {
+          "name": "时尚",
+          "colors": {
+            "--theme-color-primary": "#3D50E0",
+            "--theme-color-secondary": "#E91E63",
+            "--theme-color-accent": "#AAAAAA",
+            "--theme-color-info": "#2196F3",
+            "--theme-color-success": "#4CAF50",
+            "--theme-color-warning": "#FFC107"
+          }
+        },
+        "old_school": {
+          "name": "复古",
+          "colors": {
+            "--theme-color-primary": "#9C27B0",
+            "--theme-color-secondary": "#673AB7",
+            "--theme-color-accent": "#AAAAAA",
+            "--theme-color-info": "#418CC8",
+            "--theme-color-success": "#29B52F",
+            "--theme-color-warning": "#FFC107"
+          }
+        }
+      },
+      "initial_pages": {
+        "default": {
+          "name": "Support Site",
+          "default": false,
+          "pages": [
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "t:settings_schema.generic.name",
+    "settings": [
+      {
+        "id": "logo_url",
+        "type": "image_picker",
+        "ratio": "3:1",
+        "width": 150,
+        "label": "t:settings_schema.generic.settings.logo_url.label",
+        "info": "t:settings_schema.generic.settings.logo_url.info"
+      },
+      {
+        "id": "slogan",
+        "type": "text",
+        "label": "t:settings_schema.generic.settings.slogan.label",
+        "default": "👋 每个问题都有答案"
+      },
+      {
+        "id": "description",
+        "type": "text",
+        "label": "t:settings_schema.generic.settings.description.label",
+        "default": "👋 What Can We Help?"
+      },
+      {
+        "id": "bg_illustration_url",
+        "type": "image_picker",
+        "ratio": "16:9",
+        "width": 800,
+        "label": "t:settings_schema.generic.settings.bg_illustration_url.label",
+        "info": "t:settings_schema.generic.settings.bg_illustration_url.info"
+      },
+      {
+        "id": "copyright_info",
+        "type": "text",
+        "label": "t:settings_schema.generic.settings.copyright_info.label",
+        "placeholder": "t:settings_schema.generic.settings.copyright_info.placeholder"
+      }
+    ]
+  }
+]

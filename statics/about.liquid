@@ -1,0 +1,17 @@
+{% comment %} {% assign page = site.pages['/c5c0'] %} {% endcomment %}
+{% comment %}
+{% form_tag 'page' %}
+  {% render 'post_form', page: page,  action: 'create' %}
+{% endform_tag %} {% endcomment %}
+
+<div class="w-2/3 px-4 mx-auto my-8 sm:px-6 min-h-fit">
+  <li>
+    {% form_tag 'sign_in_with_baklib' %}
+    <input type="submit"
+        value="{{ "buttons.login" | t: '登录' }}"
+        class="flex items-center px-3 py-2 text-sm font-medium text-white transition duration-150 ease-in-out hover:text-slate-200 lg:px-5"
+        data-disable-with=" ... "
+        >
+    {% endform_tag %}
+  </li>
+</div>

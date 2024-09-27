@@ -1,0 +1,30 @@
+{
+  "theme_label": "QA",
+  "theme_description": "A lightweight Q&A management system designed for creating and managing question-and-answer content such as FAQs, troubleshooting guides, knowledge base articles, user support threads, and more.",
+  "generic": {
+    "search": "Search",
+    "search_from": "All search results from: ",
+    "all": "All",
+    "popular": "Popular",
+    "home": "Home",
+    "back": "Back",
+    "submit": "Submit",
+    "empty": "Content is Empty",
+    "404": "404 not found",
+    "403": "403 No access permission",
+    "copyright": "All rights reserved"
+  },
+  "placeholders": {
+    "search": "Searching...",
+    "input_feedback": "Send us your feedback",
+    "input_password": "Please input your password"
+  },
+  "buttons": {
+    "login": "Login",
+    "sso_login": "SSO Login",
+    "baklib_login": "Baklib Account Login"
+  },
+  "prompts": {
+    "page_restricted": "This page can only be accessed with authentication"
+  }
+}

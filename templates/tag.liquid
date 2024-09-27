@@ -1,0 +1,29 @@
+<main class="p-4 md:p-8 bg-slate-100">
+
+  <div class="relative flex">
+    <div class="flex-grow space-y-2 lg:space-y-4">
+
+      <!-- tag name -->
+      <div class="rounded shadow-md">
+        <div class="h-5 rounded-t" style="background-color: {{ tag.color }}"></div>
+        <div class="px-3 py-6 text-xl font-black bg-white rounded-b">
+          # {{ tag.name }}
+        </div>
+      </div>
+      <!-- filters by tag name -->
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 ">
+        {% paginate_tag tag.pages, as: 'pages' %}
+          {% for page in pages %}
+            {% render 'page_card', page: page %}
+          {% else %}
+            内容为空
+          {% endfor %}
+          {% render 'paginate', paginate: paginate %}
+        {% endpaginate_tag %}
+      </div>
+    </div>
+
+    <!-- Sidebar Section -->
+    {% comment %} {% render 'sidebar', site: site %} {% endcomment %}
+  </div>
+</main>

@@ -1,0 +1,30 @@
+<div>
+  <div class="mt-5 flex flex-col -my-2.5 space-y-5 text-slate-600 dark:text-slate-400">
+    <div>
+      <input value="post" autocomplete="off" type="hidden" name="page[template_name]">
+      <input value="" autocomplete="off" type="hidden" name="page[template_style]">
+      <label for="title" class="block mb-1">标题</label>
+      <input
+        type="text"
+        name="page[template_variables][title]"
+        value="{% if page.id  %}{{ page.link_text }}{% endif %}"
+        class="form-input mt-1.5 w-full rounded-lg border "
+        placeholder="请输入内容标题" />
+      {%# 提示 %}
+    </div>
+
+    {%# 内容 %}
+    <div class="">
+      <label for="content" class="block mb-1">内容</label>
+      {% assign content = page.settings.content %}
+      {% richtext_field_tag 'page[template_variables][content]', content, toolbar: 'full' %}
+    </div>
+  </div>
+  <div class="my-5">
+    {% if action == 'edit' %}
+      {% assign submit_value = '编辑帖子' %}
+    {% endif %}
+
+    <button type="submit" class="py-2 rounded cursor-pointer bg-primary">{{ submit_value | default: '创建帖子' }}</button>
+  </div>
+</div>
