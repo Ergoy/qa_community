@@ -2,7 +2,7 @@
   <div class="w-2/3 mx-auto sm:px-6 min-h-fit">
     <div class="flex flex-col justify-between text-content-subdued">
       <div class="flex-1 max-w-7xl " x-data="{}">
-        {% form_tag 'page' %}
+        {% form_tag 'page', method: 'post' %}
           {% render 'post_form', page: page,  action: 'create' %}
         {% endform_tag %}
       </div>
