@@ -9,15 +9,15 @@
 {% endcomment %}{%# %}
 
 {%# 隐藏评论框 %}
-<turbo-stream action="replace" target="create_reply_{{ page.parent.id }}_id">
+<turbo-stream action="replace" target="create_reply_{{ reply.parent.id }}_id">
   <template>
-    {% render 'reply_answer_form', parent_page: page.parent, reply: page %}
+    {% render 'reply_answer_form', root: reply.root, parent: reply.parent %}
   </template>
 </turbo-stream>
 
 {%# 将新增评论添加至根评论的子回复最上方 %}
-<turbo-stream action="prepend" target="answer_{{ page.parent.id }}_replies_list">
+<turbo-stream action="prepend" target="answer_{{ reply.root.id }}_replies_list">
   <template>
-    {% render 'reply', reply: page %}
+    {% render 'reply', reply: reply %}
   </template>
 </turbo-stream>

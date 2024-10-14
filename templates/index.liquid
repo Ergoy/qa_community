@@ -1,5 +1,5 @@
 {% assign pages = site.pages['/'].children_in_list %}
-
+{% assign default_avatar_url = 'images/avatar-01.jpg' |  asset_url %}
 <main class="grow">
     <!-- Hero -->
     <section class="relative overflow-hidden">
@@ -78,7 +78,7 @@
                                 <div class="items-center justify-between text-center md:text-left md:flex">
                                     <!-- Right: Button -->
                                     <div class="mb-4 md:mb-0 md:order-1 md:ml-6">
-                                        <a href="/-/pages/new" class="btn-sm py-1.5 text-white bg-indigo-500 hover:bg-indigo-600">提问</a>
+                                        <a href="/s/new_post" class="btn-sm py-1.5 text-white bg-indigo-500 hover:bg-indigo-600">提问</a>
                                     </div>
                                     <!-- Left: Links -->
                                     {% assign order_by = params._order_by %}
@@ -115,12 +115,11 @@
                             </div>
                             <!-- Posts -->
 
-
                             <div class="mb-12">
                                 <!-- List container -->
                                 <turbo-frame id="popular_posts_list" class="flex flex-col mb-8 space-y-3">
                                     {% if order_by == 'related' %}
-                                        {% assign posts = site.pages | where: 'related', current_user.member_id %}
+                                        {% assign posts = site.pages['/'].children_in_list | where: 'related', current_user.member_id %}
                                     {% else %}
                                         {% assign posts = site.pages['/'].children_in_list | order_by: order_by %}
                                     {% endif %}
@@ -169,25 +168,24 @@
 
                         <!-- Sidebar content -->
                         <div class="space-y-6">
-
                             <!-- New Discussions -->
                             <div>
                                 <div class="mb-4 text-xs font-semibold uppercase text-slate-600"> 最新回复 </div>
                                 <ul class="space-y-3">
-                                    {% assign newest_answers = site.pages | where: 'template_name', 'reply_level_1' | order_by: '-created_at' | limit: 5  %}
-                                    {% for answer in newest_answers %}
+                                    {% assign newest_replies = site.comments | order_by: '-created_at' | limit: 5  %}
+                                    {% for reply in newest_replies %}
                                         <li>
                                             <div class="flex items-center mb-1">
-                                                <img class="mr-2 rounded-full" src="{{ answer.author.avatar_url | default: default_avatar_url }}" width="16" height="16" alt="User 06" />
+                                                <img class="mr-2 rounded-full" src="{{ reply.author.avatar_url | default: default_avatar_url }}" width="16" height="16" alt="User 06" />
                                                 <div class="text-xs">
-                                                    <a class="font-medium text-indigo-500 transition duration-150 ease-in-out hover:text-indigo-400" href="#0">{{ answer.author.name }}</a>
+                                                    <a class="font-medium text-indigo-500 transition duration-150 ease-in-out hover:text-indigo-400" href="#0">{{ reply.author.name }}</a>
                                                 </div>
                                             </div>
                                             <h3 class="mb-1 text-sm">
-                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ answer.parent.path  }}"> {{ answer.link_text }}</a>
+                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ reply.target.path  }}"> {{ reply.body }}</a>
                                             </h3>
                                             <div class="text-xs text-slate-600">
-                                                <span class="text-slate-500">{{ answer.created_at | date: "%Y-%m-%d" }}</span>
+                                                <span class="text-slate-500">{{ reply.created_at | date: "%Y-%m-%d" }}</span>
                                             </div>
                                         </li>
                                     {% endfor %}
@@ -196,22 +194,22 @@
 
                             <!-- Popular Posts -->
                             <div>
-                                <div class="mb-4 text-xs font-semibold uppercase text-slate-600">最热问题</div>
+                                <div class="mb-4 text-xs font-semibold uppercase text-slate-600">最热回复</div>
                                 <ul class="space-y-3">
-                                    {% assign popular_pages = pages | order_by: '-visits_count' | limit: 3  %}
-                                    {% for page in popular_pages %}
+                                    {% assign popular_replies = site.comments | order_by: '-published_replies_count' | limit: 3  %}
+                                    {% for reply in popular_replies %}
                                         <li>
                                             <div class="flex items-center mb-1">
-                                                <img class="mr-2 rounded-full" src="{{ page.author.avatar_url | default: default_avatar_url }}" width="16" height="16" alt="User 06" />
+                                                <img class="mr-2 rounded-full" src="{{ reply.author.avatar_url | default: default_avatar_url }}" width="16" height="16" alt="User 06" />
                                                 <div class="text-xs">
-                                                    <a class="font-medium text-indigo-500 transition duration-150 ease-in-out hover:text-indigo-400" href="#0">{{ page.author.name }}</a>
+                                                    <a class="font-medium text-indigo-500 transition duration-150 ease-in-out hover:text-indigo-400" href="#0">{{ reply.author.name }}</a>
                                                 </div>
                                             </div>
                                             <h3 class="mb-1 text-sm">
-                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ page.path  }}"> {{ page.link_text }}</a>
+                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ reply.target.path  }}"> {{ reply.body }}</a>
                                             </h3>
                                             <div class="text-xs text-slate-600">
-                                                <span class="text-slate-500">{{ page.created_at | date: "%Y-%m-%d" }}</span> · <span class="text-slate-500">14 Comments</span>
+                                                <span class="text-slate-500">{{ reply.created_at | date: "%Y-%m-%d" }}</span>
                                             </div>
                                         </li>
                                     {% endfor %}

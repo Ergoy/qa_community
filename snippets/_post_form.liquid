@@ -17,7 +17,9 @@
     <div class="">
       <label for="content" class="block mb-1">内容</label>
       {% assign content = page.settings.content %}
-      {% richtext_field_tag 'page[template_variables][content]', content, toolbar: 'full' %}
+      {% comment %} {% richtext_field_tag 'page[template_variables][content]', content, toolbar: 'full' %} {% endcomment %}
+      <textarea name="page[template_variables][content]" rows="8" class="w-full form-textarea placeholder:italic"
+      placeholder="问题详情"> {{ content }}</textarea>
     </div>
   </div>
   <div class="my-5">

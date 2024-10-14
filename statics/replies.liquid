@@ -1,5 +1,5 @@
-{% assign page =site.pages[params.page_path] %}
-{% assign answers = page.children_in_list %}
+{% assign page = site.pages[params.page_path] %}
+{% assign answers = page.comments | roots  %}
 <ul id="post_{{ page.id }}_replies_list" data-load_more-target="container">
   {% paginate_tag answers, per: 4 %}
     {% for reply in answers %}
