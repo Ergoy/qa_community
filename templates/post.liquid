@@ -12,12 +12,12 @@
               <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
 
                 <!-- Upvotes button -->
-                <div x-data="{ posted_feedback: {{ page.visitor_posted_feedback }}, feedback_count: {{ page | feedback_type_count: '😊' }}  } ">
+                <div x-data="{ posted_feedback: {{ page.visitor_posted_feedback }}, feedback_count: {{ page | feedback_type_count: site.settings.feedback_useful_type }}  } ">
                   <div x-show="posted_feedback == true" @click="posted_feedback=false;feedback_count--" x-cloak>
-                    {% form_tag 'feedback', page: page, method: 'delete', useful_type: '😊' %}
+                    {% form_tag 'delete_feedback', page: page, useful_type: site.settings.feedback_useful_type %}
                       <div class="shrink-0">
-                        <button name="feedback[useful_type]" value="😊"
-                        :class="{ 'bg-slate-800': '😊' === '{{ page.last_feedback_emoji }}' }"
+                        <button name="feedback[useful_type]" value="{{ site.settings.feedback_useful_type }}"
+                        :class="{ 'bg-slate-800': '{{ site.settings.feedback_useful_type }}' === '{{ page.last_feedback_emoji }}' }"
                           class="sticky flex flex-col items-center px-1 py-3 text-center transition duration-150 ease-in-out border rounded top-6 w-14 h-14 border-slate-700 bg-gradient-to-tr dark:from-slate-800/20 dark:via-slate-800/50 dark:to-slate-800/20 from-blue-100 via-blue-200 to-blue-100 hover:bg-slate-800">
                           <svg class="inline-flex mb-1 fill-indigo-400" width="11" height="7"
                             xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,7 @@
                   <div x-show="posted_feedback == false" @click="posted_feedback=true;feedback_count++"  x-cloak>
                     {% form_tag 'feedback', page: page %}
                       <div class="shrink-0">
-                        <button name="feedback[useful_type]" value="😊"
+                        <button name="feedback[useful_type]" value="{{ site.settings.feedback_useful_type }}"
                           class="sticky flex flex-col items-center px-1 py-3 text-center transition duration-150 ease-in-out border rounded top-6 w-14 h-14 border-slate-700 hover:bg-blue-300">
                           <svg class="inline-flex mb-1 fill-indigo-400" width="11" height="7"
                             xmlns="http://www.w3.org/2000/svg">
@@ -75,13 +75,16 @@
                             <span>完善问题</span>
                           </a>
 
-                          {% form_tag 'page', page, method: 'delete' %}
+                          {% form_tag 'delete_page', page, %}
                             <button class="inline px-4 py-2 text-gray-700"> 删除 </button>
                           {% endform_tag %}
                       </div>
                     {% endif %}
-                  </div>
 
+                    {% unless page.published_at %}
+                      <p class="mt-4 text-sm font-bold text-info"> 内容正在审核，审核通过后其他人可查看 ! </p>
+                    {% endunless %}
+                  </div>
 
                   {% render 'reply_post_form', target: page %}
 

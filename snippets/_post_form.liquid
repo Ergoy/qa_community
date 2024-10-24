@@ -3,13 +3,14 @@
     <div>
       <input value="post" autocomplete="off" type="hidden" name="page[template_name]">
       <input value="" autocomplete="off" type="hidden" name="page[template_style]">
+      <input value="{{ site.settings.is_allow_published }}" autocomplete="off" type="hidden" name="page[published]">
       <label for="title" class="block mb-1">标题</label>
       <input
         type="text"
         name="page[template_variables][title]"
         value="{% if page.id  %}{{ page.link_text }}{% endif %}"
         class="form-input mt-1.5 w-full rounded-lg border "
-        placeholder="请输入内容标题" />
+        placeholder="请输入内容标题" required />
       {%# 提示 %}
     </div>
 
@@ -19,7 +20,7 @@
       {% assign content = page.settings.content %}
       {% comment %} {% richtext_field_tag 'page[template_variables][content]', content, toolbar: 'full' %} {% endcomment %}
       <textarea name="page[template_variables][content]" rows="8" class="w-full form-textarea placeholder:italic"
-      placeholder="问题详情"> {{ content }}</textarea>
+      placeholder="问题详情" required>{{ content }}</textarea>
     </div>
   </div>
   <div class="my-5">

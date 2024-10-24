@@ -5,7 +5,7 @@
         <div class="items-center space-y-3 sm:flex sm:space-y-0 sm:space-x-5">
             <div class="flex space-x-2 text-center">
                 <div class="flex flex-col p-2 text-xs">
-                    <div>{{ post | feedback_type_count: '😊' }}</div>
+                    <div>{{ post | feedback_type_count: site.settings.feedback_useful_type }}</div>
                     <div>投票</div>
                 </div>
                 <div class="flex flex-col p-2 text-xs border border-primary text-primary">
