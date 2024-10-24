@@ -9,8 +9,8 @@
     </div>
   </div>
 {% else %}
-<div class="w-2/3 px-2 mx-auto sm:px-6 min-h-fit">
-  未登录跳转登录页...
+  <div class="w-2/3 px-2 mx-auto sm:px-6 min-h-fit">
+    未登录跳转登录页...
     {% form_tag 'sign_in_with_baklib' %}
       <input value="true" type="hidden" name="sign_up">
       <input type="submit"
@@ -19,6 +19,5 @@
         data-disable-with=" ... " x-init="$el.click()"
         >
     {% endform_tag %}
-
-</div>
+  </div>
 {% endif %}
