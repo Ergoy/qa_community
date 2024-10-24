@@ -58,6 +58,7 @@
                                 data-transition-leave-to="opacity-0 scale-95"
                             >
                                 <div class="py-2 text-gray-700">{{ current_user.name }}</div>
+                                <a href="{{ current_user.profile_url }}"  class="py-2 text-gray-700 hover:text-primary" target="_blank"> 个人中心 </a>
                                 {% form_tag 'sign_out' %}
                                 <button type="submit" class="py-2 text-gray-700 hover:text-primary">退出登录</button>
                                 {% endform_tag %}

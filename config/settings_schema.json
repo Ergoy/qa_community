@@ -90,6 +90,20 @@
         "info": "t:settings_schema.generic.settings.bg_illustration_url.info"
       },
       {
+        "id": "is_allow_published",
+        "type": "checkbox",
+        "label": "是否开启先发后审",
+        "info": "先发后审：前台提交即发布；先审后发：前台提交，后台审核后发布。",
+        "default": false
+      },
+      {
+        "id": "feedback_useful_type",
+        "type": "text",
+        "label": "t:settings_schema.generic.settings.feedback_useful_type.label",
+        "placeholder": "t:settings_schema.generic.settings.feedback_useful_type.placeholder",
+        "default": "😊"
+      },
+      {
         "id": "copyright_info",
         "type": "text",
         "label": "t:settings_schema.generic.settings.copyright_info.label",

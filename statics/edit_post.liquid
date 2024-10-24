@@ -1,9 +1,9 @@
-{%  assign page = site.pages[params.page_path] %}
 {% if current_user %}
+  {%  assign page = current_user.pages[params.page_path] %}
   <div class="w-2/3 mx-auto sm:px-6 min-h-fit">
     <div class="flex flex-col justify-between text-content-subdued">
       <div class="flex-1 max-w-7xl " >
-        {% form_tag 'page', page, method: 'patch' %}
+        {% form_tag 'edit_page', page %}
           {% render 'post_form', page: page,  action: 'edit' %}
         {% endform_tag %}
       </div>

@@ -2,11 +2,11 @@
   <div class="flex space-x-3" id="create_reply_{{ target.id }}_form">
     <div class="w-full">
       {% form_tag 'reply' %}
-        <input value="{{ target.path }}" autocomplete="off" type="hidden" name="target_full_path">
+        <input value="{{ target.full_slug }}" autocomplete="off" type="hidden" name="target_full_path">
         <input value="create_reply_success" autocomplete="off" type="hidden" name="return_template_name">
         <input value="true" autocomplete="off" type="hidden" name="reply[published]">
         <textarea name="reply[body]" rows="4" class="w-full form-textarea placeholder:italic"
-        placeholder="回答问题" ></textarea>
+        placeholder="回答问题" required></textarea>
 
         <div id="reply_post_error" class="text-xs text-red-500"></div>
         <div class="flex items-center justify-end space-x-3">
