@@ -9,7 +9,7 @@
 </ul>
 {{ paginate.next.page  }}
 {% if paginate.next_page %}
-  <button id="load_more" data-action="click->load_more#loadMore" data-load_more-url-value="/s/replies?page_path={{ page.path }}&_page={{ paginate.next_page }}"
+  <button id="load_more" data-action="click->load_more#loadMore" data-load_more-url-value="/s/replies?page_path={{ page.full_slug }}&_page={{ paginate.next_page }}"
   data-load_more-target="button"
   >
     查看更多回复
