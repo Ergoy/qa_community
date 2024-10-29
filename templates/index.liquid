@@ -78,7 +78,7 @@
                                 <div class="items-center justify-between text-center md:text-left md:flex">
                                     <!-- Right: Button -->
                                     <div class="mb-4 md:mb-0 md:order-1 md:ml-6">
-                                        <a href="/s/new_post" class="btn-sm py-1.5 text-white bg-indigo-500 hover:bg-indigo-600">提问</a>
+                                        <a href="/s/new-post" class="btn-sm py-1.5 text-white bg-indigo-500 hover:bg-indigo-600">提问</a>
                                     </div>
                                     <!-- Left: Links -->
                                     {% assign order_by = params._order_by %}
@@ -182,7 +182,7 @@
                                                 </div>
                                             </div>
                                             <h3 class="mb-1 text-sm">
-                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ reply.target.path  }}"> {{ reply.body }}</a>
+                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ reply.target.full_slug  }}"> {{ reply.body }}</a>
                                             </h3>
                                             <div class="text-xs text-slate-600">
                                                 <span class="text-slate-500">{{ reply.created_at | date: "%Y-%m-%d" }}</span>
@@ -206,7 +206,7 @@
                                                 </div>
                                             </div>
                                             <h3 class="mb-1 text-sm">
-                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ reply.target.path  }}"> {{ reply.body }}</a>
+                                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ reply.target.full_slug  }}"> {{ reply.body }}</a>
                                             </h3>
                                             <div class="text-xs text-slate-600">
                                                 <span class="text-slate-500">{{ reply.created_at | date: "%Y-%m-%d" }}</span>

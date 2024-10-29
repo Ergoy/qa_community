@@ -71,7 +71,7 @@
 
                     {% if page.author.id == current_user.member_id %}
                       <div class="flex items-center mt-4">
-                          <a href="/s/edit_post?page_path={{ page.path }}" class="px-4 py-2 text-gray-700 bg-warning-400">
+                          <a href="/s/edit-post?page_path={{ page.full_slug }}" class="px-4 py-2 text-gray-700 bg-warning-400">
                             <span>完善问题</span>
                           </a>
 
@@ -102,7 +102,7 @@
                     </ul>
                     {{ paginate.next.page  }}
                     {% if paginate.next_page %}
-                      <button id="load_more" data-action="click->load_more#loadMore" data-load_more-url-value="/s/replies?page_path={{ page.path }}&_page={{ paginate.next_page }}"
+                      <button id="load_more" data-action="click->load_more#loadMore" data-load_more-url-value="/s/replies?page_path={{ page.full_slug }}&_page={{ paginate.next_page }}"
                       data-load_more-target="button"
                       >
                         查看更多回复
@@ -136,7 +136,7 @@
                                   </div>
                               </div>
                               <h3 class="mb-1 text-sm">
-                                  <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ page.path  }}"> {{ page.link_text }}</a>
+                                  <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ page.full_slug  }}"> {{ page.link_text }}</a>
                               </h3>
                               <div class="text-xs text-slate-600">
                                   <span class="text-slate-500">{{ page.created_at | date: "%Y-%m-%d" }}</span> · <span class="text-slate-500"> {{ page.comments | size }} 条评论 </span>
@@ -160,7 +160,7 @@
                                 </div>
                             </div>
                             <h3 class="mb-1 text-sm">
-                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ page.path  }}"> {{ page.link_text }}</a>
+                                <a class="font-semibold transition duration-150 ease-in-out hover:text-slate-600 dark:hover:text-white" href="{{ page.full_slug  }}"> {{ page.link_text }}</a>
                             </h3>
                             <div class="text-xs text-slate-600">
                                 <span class="text-slate-500">{{ page.created_at | date: "%Y-%m-%d" }}</span> · <span class="text-slate-500"> {{ page.comments | size }} 条评论 </span>
