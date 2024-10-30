@@ -1,4 +1,4 @@
-{% assign default_avatar_url = 'images/avatar-01.jpg' |  asset_url %}
+{% assign default_avatar_url = 'images/demo/avatar-01.jpg' |  asset_url %}
 <li class="pt-4" id="reply_{{ reply.id }}">
   <div class="mb-1" x-data="{open: false}">
     <div class="flex items-center mb-1">
@@ -6,7 +6,7 @@
         alt="User 15" />
       <div class="text-xs text-slate-600">
         <a class="font-medium text-indigo-500 transition duration-150 ease-in-out hover:text-indigo-400"
-          href="#0">{{ reply.author.name }}</a> · <span class="text-slate-500">{{ reply.created_at | date: "%Y-%m-%d" }}</span>
+          href="#0">{{ reply.author.name }}</a> · <span class="text-slate-500">{{ reply.created_at | date: "%Y-%m-%d %H:%M %H:%M" }}</span>
       </div>
     </div>
     <div class="mb-1 space-y-4 text-sm">
@@ -38,7 +38,7 @@
     {% endif %}
 
     {% assign replies = reply.replies %}
-    <ul class="pl-4 border-l-2 border-slate-700" id="answer_{{ reply.id }}_replies_list">
+    <ul class="pl-4 mt-2 border-l-2 border-slate-200 dark:border-slate-700" id="answer_{{ reply.id }}_replies_list">
         {% for reply in replies %}
           {% render 'reply', reply: reply %}
         {% endfor %}

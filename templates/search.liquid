@@ -1,52 +1,60 @@
-<div class="h-auto min-h-screen overflow-visible">
-  <div class="relative max-w-5xl px-3 mx-auto mt-12 sm:px-0">
-    {% comment %} search form {% endcomment %}
-    <div class="p-5 text-white rounded-tl-lg rounded-tr-lg bg-primary/80">
-      {% if search.tag or search.keywords %}
-        <p class="mt-3 text-xs">
-          搜索结果：
-          {% if search.tag %}
-            <i class="px-2 py-1 rounded" style="background-color: {{ search.tag.color }}">{{ search.tag.name }}</i>
-          {% endif %}
-          {% if search.keywords %}
-            <i>{{ search.keywords }}</i>
-          {% endif %}
-        </p>
-      {% endif %}
-    </div>
-
-    {% if search.keywords or search.tag %}
-      {% comment %} 查询结果 {% endcomment %}
-      <ul class="p-2 overflow-hidden list-none rounded-bl-lg rounded-br-lg">
-        {% assign  pages = search.pages | where: 'template_name', 'post' %}
-        {% paginate_tag pages, per: 12 %}
-          {% for page in pages %}
-            <div class="space-y-4 border-b border-slate-400 md:p-4">
-              <div class="flex items-center">
-                <div class="text-xs text-slate-600">
-                    <a class="font-medium text-indigo-500 transition duration-150 ease-in-out hover:text-indigo-400" href="#0">{{ page.author.name }}</a> · <span class="text-slate-500">{{ page.created_at | date: "%Y-%m-%d" }}</span>
-                </div>
-              </div>
-              <a class="text-lg font-bold md:text-xl hover:text-secondary search-highlight-block" href="{{ page.url }}">{{ page.highlighted_search_title }}</a>
-              <p class="text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.highlighted_search_content }}</p>
-              <div class="flex items-center">
-                  <div class="flex space-x-2 text-xs text-slate-600">
-                      <span class="flex text-slate-500"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" > <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" /></svg> {{ page | feedback_type_count: '😊' }} </span>
-                      <span class="flex text-slate-500 "> <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                    </svg>
-                    {{ page.comments | size }} </span>
-                  </div>
-              </div>
+<main class="grow">
+  <section>
+    <div class="max-w-6xl px-4 mx-auto sm:px-6">
+      <div class="pt-8 md:pt-20">
+        <div class="h-auto min-h-screen overflow-visible">
+          <div class="relative max-w-5xl px-3 mx-auto mt-12 sm:px-0">
+            {% comment %} search form {% endcomment %}
+            <div class="p-5 text-white bg-primary/80">
+              {% if search.tag or search.keywords %}
+                <p class="mt-3 text-xl">
+                  搜索结果：
+                  {% if search.tag %}
+                    <i class="px-2 py-1 rounded" style="background-color: {{ search.tag.color }}">{{ search.tag.name }}</i>
+                  {% endif %}
+                  {% if search.keywords %}
+                    <i>{{ search.keywords }}</i>
+                  {% endif %}
+                </p>
+              {% endif %}
             </div>
-          {% else %}
-            <div class="w-full mx-auto my-8">{{ "search.no_results" | t: 'No results found' }}</div>
-          {% endfor %}
-          {% render 'paginate', paginate: paginate %}
-        {% endpaginate_tag %}
-      </ul>
-    {% else %}
-      <div class="w-full mx-auto my-8">{{ "search.please_enter_keywords" | t }}</div>
-    {% endif %}
-  </div>
-</div>
+
+            {% if search.keywords or search.tag %}
+              {% comment %} 查询结果 {% endcomment %}
+              <ul class="p-2 overflow-hidden list-none rounded-bl-lg rounded-br-lg">
+                {% assign  pages = search.pages | where: 'template_name', 'page' %}
+                {% paginate_tag pages, per: 12 %}
+                  {% for page in pages %}
+                    <div class="space-y-4 border-b border-slate-400 md:p-4">
+                      <div class="flex items-center">
+                        <div class="text-xs text-slate-600">
+                            <a class="font-medium text-indigo-500 transition duration-150 ease-in-out hover:text-indigo-400" href="#0">{{ page.author.name }}</a> · <span class="text-slate-500">{{ page.created_at | date: "%Y-%m-%d %H:%M" }}</span>
+                        </div>
+                      </div>
+                      <a class="text-lg font-bold md:text-xl hover:text-secondary search-highlight-block" href="{{ page.url }}">{{ page.highlighted_search_title }}</a>
+                      <p class="text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.highlighted_search_content }}</p>
+                      <div class="flex items-center">
+                          <div class="flex space-x-2 text-xs text-slate-600">
+                              <span class="flex text-slate-500"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" > <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" /></svg> {{ page | feedback_type_count: site.settings.feedback_useful_type }} </span>
+                              <span class="flex text-slate-500 "> <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                            </svg>
+                            {{ page.comments | size }} </span>
+                          </div>
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class="w-full mx-auto my-8">{{ "search.no_results" | t: 'No results found' }}</div>
+                  {% endfor %}
+                  {% render 'paginate', paginate: paginate %}
+                {% endpaginate_tag %}
+              </ul>
+            {% else %}
+              <div class="w-full mx-auto my-8">{{ "search.please_enter_keywords" | t }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

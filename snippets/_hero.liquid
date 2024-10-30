@@ -1,0 +1,62 @@
+{% assign default_illustration_url = 'images/demo/hero-illustration.svg' |  asset_url %}
+{% assign default_hero_url = 'images/demo/hero-image.png' |  asset_url %}
+{% assign default_slogan =  '👋 A community of makers that learn and grow together' %}
+{% assign default_description =  '👋 Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.' %}
+
+<!-- Hero -->
+<section class="relative overflow-hidden">
+    <!-- Bg -->
+    <div class="absolute inset-0 bg-opacity-50 pointer-events-none bg-gradient-to-t from-primary-100 dark:from-slate-800 -z-10" aria-hidden="true"></div>
+
+    <!-- Illustration -->
+    <div class="absolute -translate-x-1/2 pointer-events-none left-1/2 -z-10" aria-hidden="true">
+        <img src="{{ site.settings.bg_illustration_url | default: default_illustration_url }}" class="max-w-none" width="1905" height="622" alt="Hero Illustration">
+    </div>
+
+    <div class="max-w-6xl px-4 mx-auto sm:px-6">
+        <div class="pb-8 pt-28 md:pt-36 md:pb-16">
+
+            <!-- Hero content -->
+            <div class="relative flex flex-col max-w-xl mx-auto text-center md:max-w-none md:text-left md:flex-row">
+
+                <!-- Content -->
+                <div class="md:w-[48rem]">
+
+                    <!-- Copy -->
+                    <div class="md:pr-32">
+                        <h1 class="pb-6 text-transparent h2 font-aspekta bg-clip-text bg-gradient-to-tr from-primary dark:from-primary via-secondary dark:via-sky-300 to-slate-900 dark:to-slate-200">{{ site.settings.slogan |  default: default_slogan }}</h1>
+                        <p class="mb-8 text-lg text-slate-500 dark:text-slate-400">{{ site.settings.description |  default: default_description }}</p>
+                    </div>
+                    <!-- Logos -->
+                    {% if false %}
+                    <div class="flex-wrap items-center text-center md:flex md:space-x-5">
+                        <!-- Label -->
+                        <div class="mb-4 md:mb-0">
+                            <div class="text-sm italic text-slate-500 whitespace-nowrap">Catch up with founders from</div>
+                        </div>
+                        <div class="inline-flex flex-wrap items-center">
+                            <div class="px-3 py-2">
+                                <img src="{{ 'images/demo/client-01.svg' | asset_url }}" width="85" height="40" alt="Client 01">
+                            </div>
+                            <div class="px-3 py-2">
+                                <img src="{{ 'images/demo/client-02.svg' | asset_url }}" width="72" height="16" alt="Client 02">
+                            </div>
+                            <div class="px-3 py-2">
+                                <img src="{{ 'images/demo/client-03.svg' | asset_url }}" width="67" height="32" alt="Client 03">
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Image -->
+                    <div class="max-w-sm mx-auto md:max-w-none md:absolute md:left-[42rem] lg:left-[48rem] mt-12 md:mt-0 md:top-1/2 md:-translate-y-1/2">
+                        <img src="{{ site.settings.hero_url | default: default_hero_url }}" class="mx-auto md:max-w-none" width="332" height="298" alt="Hero Illustration" />
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>

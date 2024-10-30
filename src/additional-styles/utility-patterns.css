@@ -25,26 +25,12 @@
     }
 }
 
-/* Buttons */
-.btn,
-.btn-sm {
-    @apply text-sm font-medium inline-flex items-center justify-center rounded-full leading-5 whitespace-nowrap transition duration-150 ease-in-out;
-}
-
-.btn {
-    @apply px-5 py-2.5;
-}
-
-.btn-sm {
-    @apply px-4 py-2;
-}
-
 /* Forms */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
 .form-input,
@@ -53,7 +39,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox,
 .form-radio {
-    @apply bg-transparent bg-gradient-to-tr dark:from-slate-800/20 dark:via-slate-800/50 dark:to-slate-800/20  from-slate-200/20 via-slate-200/50 to-slate-200/20 border dark:border-slate-700 dark:focus:bg-slate-800 border-slate-300 focus:bg-slate-200 focus:border-slate-700;
+    @apply bg-transparent bg-gradient-to-tr from-slate-100/20 via-slate-100/50 to-slate-100/20 dark:from-slate-800/20 dark:via-slate-800/50 dark:to-slate-800/20 border dark:border-slate-700;
 }
 
 .form-input,
@@ -95,4 +81,27 @@ input[type="search"]::-webkit-search-results-decoration {
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+}
+
+/* Buttons */
+.btn,
+.btn-sm {
+    @apply text-sm text-white !bg-primary hover:!bg-secondary font-medium inline-flex items-center justify-center rounded-full leading-5 whitespace-nowrap
+    duration-150 ease-in-out;
+}
+
+.btn {
+    @apply px-5 py-2.5;
+}
+
+.btn-sm {
+    @apply px-4 py-2;
+}
+
+.btn-ghost{
+    @apply text-black dark:text-white !bg-transparent hover:!bg-secondary hover:!text-white border;
+}
+/* 搜索关键词高亮 */
+.search-highlight-block b {
+    color: hsl(var(--theme-color-primary));
 }
