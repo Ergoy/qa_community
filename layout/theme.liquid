@@ -16,14 +16,14 @@
   {{ site.settings.head_html }}
 </head>
 
-<body class="relative w-screen h-screen overflow-x-hidden bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200 " id="js-body" x-data>
-  <div class="antialiased tracking-tight font-inter ">
+<body class="antialiased tracking-tight font-inter dark:bg-slate-900 dark:text-slate-200" id="js-body" data-controller="theme">
   <!-- Page wrapper -->
-    <div class="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
-      {% render "header" %}
+  <div class="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
+    {% render "header" %}
+    <main class="grow">
       {{ content_for_layout }}
-      {% render "footer" %}
-    </div>
+    </main>
+    {% render "footer" %}
   </div>
   <div id="x-teleport-target" class="relative z-[60] h-0 overflow-hidden"></div>
 </body>

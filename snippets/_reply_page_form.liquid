@@ -5,22 +5,22 @@
         <input value="{{ target.full_slug }}" autocomplete="off" type="hidden" name="target_full_path">
         <input value="create_reply_success" autocomplete="off" type="hidden" name="return_template_name">
         <input value="true" autocomplete="off" type="hidden" name="reply[published]">
-        <textarea name="reply[body]" rows="4" class="w-full form-textarea placeholder:italic"
-        placeholder="回答问题" required></textarea>
+        <textarea name="reply[body]" rows="4" class="w-full p-2 border rounded-md form-textarea placeholder:italic"
+        placeholder="回复" required></textarea>
 
-        <div id="reply_post_error" class="text-xs text-red-500"></div>
+        <div id="reply_page_error" class="text-xs text-red-500"></div>
         <div class="flex items-center justify-end space-x-3">
           <input
             type="submit"
             value="提交"
             @click="open = false;name=content.substring(0, 50)"
-            class="inline-flex items-center justify-center px-4 py-2 mt-2 text-sm font-medium leading-5 transition duration-150 ease-in-out rounded-full cursor-pointer whitespace-nowrap bg-primary"  />
+            class="btn"/>
         </div>
       {% endform_tag %}
     </div>
   </div>
 {% else %}
-  <div class="flex w-full p-6 space-x-3 rounded-md bg-slate-200 dark:bg-slate-800" >
+  <div class="flex w-full p-6 space-x-3 rounded-md" >
     <div class="flex items-center mx-auto">
       需要
       {% form_tag 'sign_in_with_baklib' %}

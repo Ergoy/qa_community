@@ -7,11 +7,13 @@
     "theme_version": "1.0.0",
     "theme_scope": "community",
     "theme_author": "Baklib",
-    "theme_documentation_url": "https://help.baklib.cn/themes/release-guide",
-    "theme_support_url": "https://help.baklib.cn/themes/release-guide/settings",
-    "theme_thumb_url": "https://assets.tanmer.cn/baklib/apps/questions-tab.png",
+    "theme_documentation_url": "https://help.baklib.cn/themes/community-qa",
+    "theme_support_url": "https://help.baklib.cn/themes/community-qa",
+    "theme_thumb_url": "images/theme/thumb.png",
     "theme_preview_images": [
-      "https://assets.tanmer.cn/baklib/apps/questions-tab.png"
+      "images/theme/index.png",
+      "images/theme/page.png",
+      "images/theme/comment.png"
     ],
     "theme_languages": [
       {
@@ -50,9 +52,27 @@
       },
       "initial_pages": {
         "default": {
-          "name": "Support Site",
+          "name": "Question Community",
           "default": false,
           "pages": [
+            {
+              "name": "这是我的第1篇帖子",
+              "slug": "post1",
+              "template": "page",
+              "settings":
+              {
+                "content": "这是我的第1篇帖子内容"
+              }
+            },
+            {
+              "name": "这是我的第2篇帖子",
+              "slug": "post2",
+              "template": "page",
+              "settings":
+              {
+                "content": "这是我的第1篇帖子内容"
+              }
+            }
           ]
         }
       }
@@ -108,6 +128,42 @@
         "type": "text",
         "label": "t:settings_schema.generic.settings.copyright_info.label",
         "placeholder": "t:settings_schema.generic.settings.copyright_info.placeholder"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.generic.header_name",
+    "settings": [
+      {
+        "id": "header_menu_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.header_menu_html.label",
+        "info": "t:settings_schema.generic.settings.header_menu_html.info",
+        "rows": 10,
+        "default": "<li><a class='underline text-slate-500 hover:no-underline' href='#0'>About</a></li>",
+        "placeholder": "<li><a class='underline text-slate-500 hover:no-underline' href='#0'>About</a></li>"
+      },
+      {
+        "id": "footer_menu_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.footer_menu_html.label",
+        "info": "t:settings_schema.generic.settings.footer_menu_html.info",
+        "rows": 10,
+        "default": "<li><a class='underline text-slate-500 hover:no-underline' href='#0'>About</a></li>",
+        "placeholder": "<li><a class='underline text-slate-500 hover:no-underline' href='#0'>About</a></li>"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.generic.head_title",
+    "settings": [
+      {
+        "id": "head_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.head_html.label",
+        "info": "t:settings_schema.generic.settings.head_html.info",
+        "rows": 10,
+        "placeholder": "t:settings_schema.generic.settings.head_html.placeholder"
       }
     ]
   }
