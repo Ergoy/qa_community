@@ -1,4 +1,4 @@
-{% if current_user %}
+{% if current_user.is_present %}
   <div class="flex space-x-3" id="create_reply_{{ target.id }}_form">
     <div class="w-full">
       {% form_tag 'reply' %}

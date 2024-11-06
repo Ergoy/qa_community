@@ -3,6 +3,7 @@
 @import './additional-styles/toggle-switch.css';
 @import './additional-styles/theme.css';
 @import './additional-styles/popper.css';
+@import './additional-styles/tooltip.css';
 
 @tailwind base;
 @tailwind components;

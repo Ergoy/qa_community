@@ -17,8 +17,7 @@
                 <ul class="flex flex-wrap items-center justify-end space-x-3 grow">
 
                     {{ site.settings.header_menu_html }}
-
-                    {% if current_user %}
+                    {% if current_user.is_present %}
                         <li><a href="/s/new" class="py-2 text-white btn-sm bg-primary hover:bg-secondary">发布帖子</a></li>
                         <li>
                             <div data-controller="dropdown" class="relative">
@@ -40,7 +39,7 @@
                                     data-transition-leave-from="opacity-100 scale-100"
                                     data-transition-leave-to="opacity-0 scale-95"
                                 >
-                                    <div class="py-2">Welcome 👏 {{ current_user.name }}</div>
+                                    <div class="py-2 ">Welcome 👏 {{ current_user.name }}</div>
                                     <a href="{{ current_user.profile_url }}"  class="py-2 text-gray-700 hover:text-primary" target="_blank"> 个人中心 </a>
                                     {% form_tag 'sign_out' %}
                                         <button type="submit" class="py-2 hover:text-primary">退出登录</button>
