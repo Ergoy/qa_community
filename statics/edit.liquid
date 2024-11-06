@@ -1,5 +1,5 @@
 {%  assign page = current_user.pages[params.page_path] %}
-{% if current_user %}
+{% if current_user.is_present %}
   <main class="grow">
     <section class="relative overflow-hidden">
       <!-- Illustration -->
@@ -27,7 +27,6 @@
             <!-- Sidebar -->
             <aside class="pt-6 pb-12 md:w-64 lg:w-80 md:shrink-0 md:pb-20">
             </aside>
-
           </div>
         </div>
       </div>

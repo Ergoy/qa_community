@@ -89,7 +89,7 @@
 
                     <!-- Page content -->
                     <div class="prose ProseMirror sm:prose-base lg:prose-lg focus:outline-none dark:prose-invert">
-                      {{ page.settings.content |  strip_html }}
+                      {{ page.settings.content }}
                     </div>
                   </article>
 
@@ -257,6 +257,10 @@
         "info": "选定推荐后，会在推荐栏目显示",
         "default": false
       }
-    ]
+    ],
+    "user_creatable": true,
+    "user_editable": true,
+    "user_deletable": true,
+    "user_permitted_attributes": ["title", "content"]
   }
 {% endschema %}

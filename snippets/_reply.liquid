@@ -17,7 +17,7 @@
         {{ reply.body }}
       </article>
     </div>
-    {% if current_user %}
+    {% if current_user.is_present %}
       <div class="flex space-x-2 text-xs text-slate-600">
         <span class="text-xs cursor-pointer text-slate-600" @click="open = !open">回复</span>
         {% if current_user.member_id == reply.author.id %}
@@ -45,8 +45,3 @@
     </ul>
   </div>
 </li>
-
-
-
-
-

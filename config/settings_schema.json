@@ -82,6 +82,13 @@
     "name": "t:settings_schema.generic.name",
     "settings": [
       {
+        "id": "is_allow_published",
+        "type": "checkbox",
+        "label": "是否开启先发后审",
+        "info": "先发后审：前台提交即发布；先审后发：前台提交，后台审核后发布。",
+        "default": false
+      },
+      {
         "id": "logo_url",
         "type": "image_picker",
         "ratio": "3:1",
