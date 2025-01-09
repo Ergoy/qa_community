@@ -12,6 +12,7 @@
     "theme_thumb_url": "images/theme/thumb.png",
     "theme_preview_images": [
       "images/theme/index.png",
+      "images/theme/index-forum.png",
       "images/theme/page.png",
       "images/theme/comment.png"
     ],
@@ -82,13 +83,6 @@
     "name": "t:settings_schema.generic.name",
     "settings": [
       {
-        "id": "is_allow_published",
-        "type": "checkbox",
-        "label": "是否开启先发后审",
-        "info": "先发后审：前台提交即发布；先审后发：前台提交，后台审核后发布。",
-        "default": false
-      },
-      {
         "id": "logo_url",
         "type": "image_picker",
         "ratio": "3:1",
@@ -97,24 +91,12 @@
         "info": "t:settings_schema.generic.settings.logo_url.info"
       },
       {
-        "id": "slogan",
-        "type": "text",
-        "label": "t:settings_schema.generic.settings.slogan.label",
-        "default": "👋 每个问题都有答案"
-      },
-      {
-        "id": "description",
-        "type": "text",
-        "label": "t:settings_schema.generic.settings.description.label",
-        "default": "👋 What Can We Help?"
-      },
-      {
-        "id": "bg_illustration_url",
+        "id": "default_avatar",
         "type": "image_picker",
-        "ratio": "16:9",
-        "width": 800,
-        "label": "t:settings_schema.generic.settings.bg_illustration_url.label",
-        "info": "t:settings_schema.generic.settings.bg_illustration_url.info"
+        "ratio": "4:4",
+        "width": 100,
+        "label": "默认头像",
+        "info": "新注册用户未设置头像之前，显示该默认头像"
       },
       {
         "id": "is_allow_published",

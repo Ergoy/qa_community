@@ -6,8 +6,8 @@
   <meta name="author" content="Baklib">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% meta_tags %}
-  {{ 'editor.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
-  {{ 'editor.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
+  {{ 'baklib/shared/editor.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+  {{ 'baklib/shared/editor.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
   {{ 'javascripts/main.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
   <!-- Tailwind -->
   {{ 'css/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
@@ -18,7 +18,7 @@
 
 <body class="antialiased tracking-tight font-inter dark:bg-slate-900 dark:text-slate-200" id="js-body" data-controller="theme">
   <!-- Page wrapper -->
-  <div class="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
+  <div class="relative flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
     {% render "header" %}
     <main class="grow">
       {{ content_for_layout }}

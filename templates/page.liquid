@@ -1,5 +1,8 @@
 {% assign pages = site.pages['/'].children_in_list %}
-{% assign default_avatar_url = 'images/demo/avatar-01.jpg' |  asset_url %}
+{% assign default_avatar_url = site.settings.default_avatar %}
+{% unless default_avatar_url  %}
+    {% assign default_avatar_url = 'images/avatar.svg' |  asset_url %}
+{% endunless %}
 
 <main class="grow">
   <section class="relative overflow-hidden">
@@ -8,8 +11,8 @@
         <img src="{{ 'images/demo/hero-illustration.svg' | asset_url }}" class="max-w-none" width="1905" height="622" alt="Hero Illustration">
     </div>
 
-    <div class="max-w-6xl px-4 mx-auto sm:px-6">
-      <div class="pt-24 md:pt-32">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6">
+      <div class="pt-6 md:pt-12">
         <div class="md:flex md:justify-between md:divide-x md:divide-slate-300 dark:md:divide-slate-800">
           <!-- Page content -->
           <div class="md:grow ">
@@ -88,8 +91,8 @@
                     </header>
 
                     <!-- Page content -->
-                    <div class="prose ProseMirror sm:prose-base lg:prose-lg focus:outline-none dark:prose-invert">
-                      {{ page.settings.content }}
+                    <div class="ProseMirror">
+                      {{ page.settings.content | sanitize_html }}
                     </div>
                   </article>
 
@@ -141,27 +144,12 @@
           </div>
 
           <!-- Sidebar -->
-          <aside class="pt-6 pb-12 md:w-64 lg:w-80 md:shrink-0 md:pb-20">
+          <aside class="pt-0 pb-12 md:w-64 lg:w-80 md:shrink-0 md:pb-20">
             <div class="md:pl-6 lg:pl-10">
-
               <!-- Sidebar content -->
               <div class="space-y-6">
                 <!-- Search form -->
-                {% form_tag 'search' %}
-                    <div class="flex flex-wrap">
-                        <div class="w-full">
-                            <label class="block text-sm sr-only" for="search">搜索|Search</label>
-                            <div class="relative flex items-center">
-                                <input type="search" id="search" name="{{ form.keywords_field_name }}" value="{{ search.keywords | escape_once }}" class="w-full py-2 pl-10 rounded-full form-input" placeholder="搜索内容" />
-                                <div class="absolute inset-0 right-auto flex items-center justify-center">
-                                    <svg class="w-4 h-4 mx-3 shrink-0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                        <path class="fill-slate-200 dark:fill-slate-600" d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm8.707 12.293a.999.999 0 11-1.414 1.414L11.9 13.314a8.019 8.019 0 001.414-1.414l2.393 2.393z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endform_tag %}
+                {% render 'search_form' %}
                 <!-- New Discussions -->
                 <div>
                   <h3 class="mb-2 text-base font-semibold"> 最新回复... </h3>
@@ -256,11 +244,42 @@
         "label": "是否推荐",
         "info": "选定推荐后，会在推荐栏目显示",
         "default": false
+      },
+      {
+        "id": "thumb_image_url",
+        "type": "image_picker",
+        "ratio": "16:9",
+        "width": 240,
+        "label": "封面图",
+        "info": "选择一个 16:9 的图片，默认宽度 240px"
+      },
+      {
+        "id": "video_url",
+        "type": "video_picker",
+        "label": "视频",
+        "info": "宣传视频"
+      },
+      {
+        "id": "text_color",
+        "type": "color",
+        "label": "Hero 文字颜色"
+      },
+      {
+        "id": "distance",
+        "type": "range",
+        "label": "配送范围",
+        "min": "0",
+        "max": "100",
+        "step": "0.1",
+        "default": "15",
+        "unit": "km",
+        "info": "选择快递可配送范围"
       }
+
     ],
     "user_creatable": true,
     "user_editable": true,
     "user_deletable": true,
-    "user_permitted_attributes": ["title", "content"]
+    "user_permitted_attributes": ["title", "content", "tags", "thumb_image_url", "video_url", "text_color", "distance"]
   }
 {% endschema %}

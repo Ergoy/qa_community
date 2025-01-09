@@ -28,7 +28,7 @@
     "baklib_login": "Baklib 账号登录"
   },
   "prompts": {
-    "page_restricted": "本页面需要认证才可以被访问"
+    "page_restricted": "本页面需要授权才可以访问"
   },
   "settings_schema": {
     "beian": {

@@ -1,13 +1,13 @@
-<header class="absolute z-30 w-full dark:bg-slate-900">
-    <div class="max-w-6xl px-4 mx-auto sm:px-6">
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-slate-900" id="edit-info-bar-container">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6">
         <div class="flex items-center justify-between h-16 md:h-20">
             <!-- Site branding -->
             <div class="mr-4 shrink-0">
                 <!-- Logo -->
-                <a class="block group" href="/" aria-label="Cruip">
-                    <span class="sr-only">{{ site.name }}</span>
+                <a class="flex items-center space-x-1 group" href="/" aria-label="Baklib">
                     {% assign logo = 'images/demo/logo.svg' | asset_url %}
                     <img src="{{ site.settings.logo_url | default: logo }}" class="w-auto h-8 hover:scale-175 hover:rotate-2" alt="{{ site.name }}" />
+                    <span class="sr-only">{{ site.name }}</span>
                 </a>
             </div>
 
@@ -17,19 +17,12 @@
                 <ul class="flex flex-wrap items-center justify-end space-x-3 grow">
 
                     {{ site.settings.header_menu_html }}
-                    {% if current_user.is_present %}
+                    {% if current_user %}
                         <li><a href="/s/new" class="py-2 text-white btn-sm bg-primary hover:bg-secondary">发布帖子</a></li>
                         <li>
                             <div data-controller="dropdown" class="relative">
-                                <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="flex items-center space-x-1 w-full text-white !bg-gray-600 btn-sm hover:bg-primary">
+                                <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="flex items-center space-x-1 btn btn-sm btn-ghost">
                                     <span>个人中心</span>
-                                    {% if current_user.image %}
-                                        <img src="{{ current_user.image }}" class="w-4 h-4">
-                                    {% else %}
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 rounded-full">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                        </svg>
-                                    {% endif %}
                                 </button>
                                 <div
                                     data-dropdown-target="menu"
@@ -39,10 +32,18 @@
                                     data-transition-leave-from="opacity-100 scale-100"
                                     data-transition-leave-to="opacity-0 scale-95"
                                 >
-                                    <div class="py-2 ">Welcome 👏 {{ current_user.name }}</div>
-                                    <a href="{{ current_user.profile_url }}"  class="py-2 text-gray-700 hover:text-primary" target="_blank"> 个人中心 </a>
+                                    <div class="flex items-center py-2 space-x-2 border-b">
+                                        {% if current_user.image %}
+                                            <img src="{{ current_user.image }}" class="w-4 h-4">
+                                        {% else %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 rounded-full">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+                                        {% endif %}
+                                        <span>{{ current_user.name }}</span></div>
+                                    <a href="{{ current_user.profile_url }}"  class="block w-full py-2 hover:text-white hover:bg-accent" target="_blank"> 个人中心 </a>
                                     {% form_tag 'sign_out' %}
-                                        <button type="submit" class="py-2 hover:text-primary">退出登录</button>
+                                        <button type="submit" class="w-full py-2 text-left hover:text-white hover:bg-accent">退出登录</button>
                                     {% endform_tag %}
                                 </div>
                             </div>
